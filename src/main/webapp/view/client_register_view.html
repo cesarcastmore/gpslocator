@@ -1,0 +1,32 @@
+<!-- Se aplicara para negocios
+
+https://scotch.io/tutorials/angularjs-multi-step-form-using-ui-router 
+
+ -->
+<div class="row">
+	<form ng-submit="register()">
+
+		<div class="col-md-4"></div>
+		<div class="col-md-4">
+			<label>Username</label> <input type="" name="" class="form-control"
+				id="" value="" ng-model="user.username"> <label>Password</label>
+			<input type="password" name="" class="form-control" id="" value=""
+				ng-model="user.password"> <label>Email Address</label> <input
+				type="email" name="" class="form-control" id="" value=""
+				ng-model="user.email"> 
+				<label>Role</label> <select
+				class="form-control" ng-model="user.type">
+				<option value="client">Client</option>
+				<option value="business">Business</option>
+			</select> <br>
+
+			<button type="submit" class="btn btn-primary">Register</button>
+		</div>
+		<div class="col-md-4"></div>
+
+	</form>
+</div>
+
+
+
+

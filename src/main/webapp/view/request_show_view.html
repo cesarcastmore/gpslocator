@@ -1,0 +1,59 @@
+<div class="row" ng-init="getRequest()">
+	<div class="col-md-12">
+		<textarea readonly value="request.commit" class="form-control"
+			rows="3">{{request.commit}}</textarea>
+		<small>Responses</small>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="list-group"
+					ng-repeat="x in request.requests  | orderBy:'created'">
+					<div class="row" ng-init="getAuthor(x)">
+						<div class="col-md-2">
+							<a href="#/business/info/{{x.author.userId}}"><img ng-src="{{x.author.profileimage}}"
+								class="img-thumbnail img-responsive"></a>
+						</div>
+						<div class="col-md-10">
+							<dl class="dl-horizontal">
+								<dt>Name</dt>
+								<dd>{{x.author.name}}</dd>
+								<dt>Street</dt>
+								<dd>{{x.author.address.street}}</dd>
+								<dt>Outdoor Number</dt>
+								<dd>{{x.author.address.outdoorNumber}}</dd>
+								<dt>Indoor Number</dt>
+								<dd>{{x.author.address.indoorNumber}}</dd>
+								<dt>Neighborhood</dt>
+								<dd>{{x.author.address.neighborhood}}</dd>
+								<dt>Postal Code</dt>
+								<dd>{{x.author.address.postalCode}}</dd>
+								<dt>City</dt>
+								<dd>{{x.author.address.city}}</dd>
+								<dt>Phone</dt>
+								<dd>{{x.author.address.phone}}</dd>
+							</dl>
+						</div>
+					</div>
+					<div class="bs-callout bs-callout-info" id="callout-focus-demo">
+						<h4>Response</h4>
+						<a href ng-click="actionOnClick(x)"
+							ng-class="{'list-group-item active': x.click==true, 'list-group-item': x.click==false, 'list-group-item': !x.click}">
+							{{x.commit}} </a>
+					</div>
+					<table class="table" ng-show="x.click">
+						<tr ng-repeat="y in x.requests  | orderBy:'created'">
+							<td><textarea class="form-control" readonly>{{y.commit}}</textarea></td>
+							<td><a class="badge" ng-click="removeNode(x, y)">delete</a></td>
+						</tr>
+						<tr>
+							<td><textarea class="form-control" ng-model="node.commit"></textarea></td>
+							<td><a class="badge" ng-click="createNode(x, node)">respond</a></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</div>
+

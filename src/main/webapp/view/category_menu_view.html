@@ -1,0 +1,16 @@
+<div class="btn-group-vertical" role="group"
+	aria-label="Vertical button group"  >
+	<div class="btn-group btn-group-justified" role="group" ng-repeat="category in categorymenus | orderBy:'name'">
+		<div class="btn-group" role="group">
+			<button  type="button" 
+ 				class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+				aria-haspopup="true" aria-expanded="false">
+				{{category.name}} <span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop1" >
+				<li ng-repeat="m in category.menus | orderBy:'name'"><a href="{{m.url}}">{{m.name}}</a></li>
+			</ul>
+		</div>
+	</div>
+
+</div>

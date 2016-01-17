@@ -1,0 +1,11 @@
+<div class="row" ng-init="getCurrentLocation()">
+	<div class="col-md-6" ng-include="'view/address_map_view.html'">
+	</div>
+	<div class="col-md-6"
+		ng-init="getAddress()" ng-include="'view/address_edit_address_view.html'"></div>
+</div>
+
+<div class="row" ng-show="type =='business'">
+	<div class="col-md-12"
+		ng-include="'view/address_place_google_view.html'"></div>
+</div>

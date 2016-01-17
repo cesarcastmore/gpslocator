@@ -1,0 +1,56 @@
+<!-- http://stackoverflow.com/questions/32775461/ng-model-not-working-inside-ng-include  -->
+
+<form ng-submit="$parent.updateAddress()">
+	<div class="form-group">
+		<table class="table">
+			<tbody>
+				<tr>
+					<td>Street</td>
+					<td><input name="" class="form-control" id=""
+						value="{{$parent.address.name}}" ng-model="$parent.address.street"></td>
+				</tr>
+				<tr>
+					<td>OutDoor Number</td>
+					<td><input name="" class="form-control" id=""
+						value="{{$parent.address.outdoorNumber}}" ng-model="$parent.address.outdoorNumber"></td>
+				</tr>
+				<tr>
+					<td>InDoor Number</td>
+					<td><input name="" class="form-control" id=""
+						value="{{$parent.address.indoorNumber}}" ng-model="$parent.address.indoorNumber"></td>
+				</tr>
+
+				<tr>
+				<tr>
+					<td>Neighborhood</td>
+					<td><input name="" class="form-control" id=""
+						value="{{$parent.address.neighborhood}}" ng-model="$parent.address.neighborhood"></td>
+					</td>
+				</tr>
+				<tr>
+					<td>City</td>
+					<td><input name="" class="form-control" id=""
+						value="{{$parent.address.city}}" ng-model="$parent.address.city"></td>
+				</tr>
+				<tr>
+					<td>State</td>
+					<td><input name="" class="form-control" id=""
+						value="{{$parent.address.state}}" ng-model="$parent.address.state"></td>
+				</tr>
+				<tr>
+					<td>Postal Code</td>
+					<td><input name="" class="form-control" id=""
+						value="{{$parent.address.postalCode}}" ng-model="$parent.address.postalCode"></td>
+				</tr>
+				<tr>
+					<td>Phone</td>
+					<td><input name="" class="form-control" id=""
+						value="{{$parent.address.phone}}" ng-model="$parent.address.phone"></td>
+				</tr>
+
+
+			</tbody>
+		</table>
+		<button type="submit" class="btn btn-primary">Save</button>
+	</div>
+</form>
