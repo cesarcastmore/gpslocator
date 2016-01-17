@@ -2,14 +2,33 @@ controllers.controller('BusinessRegisterController', [
 		'$scope',
 		'NgMap',
 		'PlaceRESTful',
-		function($scope, NgMap, PlaceRESTful) {
+		'ServiceRESTful',
+		function($scope, NgMap, PlaceRESTful, ServiceRESTful) {
 
 			$scope.steps = [ 'Step 1: Personal Information',
-					'Step 2: Address Information',
-					'Step 3: Registration on Google Maps' ];
+					'Step 2: Registration on Google Maps',
+					'Step 3: Address Information', 'Step 4: Register' ];
 			$scope.selection = $scope.steps[0];
 			$scope.business = {};
 			$scope.search = {};
+
+			$scope.data = {
+				singleSelect : null,
+				option1 : null
+			};
+
+			$scope.initServices = function(para) {
+
+				var respuesta = ServiceRESTful.getAll();
+				respuesta.then(function exito(response) {
+
+					$scope.services = response.data;
+
+				}, function error(response) {
+
+				});
+
+			};
 
 			$scope.getCurrentStepIndex = function() {
 				// Get the index of the current step given selection
@@ -30,19 +49,12 @@ controllers.controller('BusinessRegisterController', [
 
 			$scope.nearbysearch = function() {
 
-				console.log("ENTRO    AQUI");
-
-				$scope.currentlocation = {
-					lat : $scope.map.markers[0].getPosition().lat(),
-					lng : $scope.map.markers[0].getPosition().lng(),
-				};
-
 				params = {
 					radius : $scope.search.radius,
 					name : $scope.search.name,
 					types : $scope.search.types,
-					lat : $scope.currentlocation.lat,
-					lng : $scope.currentlocation.lng
+					lat : $scope.map.markers[0].getPosition().lat(),
+					lng : $scope.map.markers[0].getPosition().lng()
 
 				}
 
@@ -54,18 +66,14 @@ controllers.controller('BusinessRegisterController', [
 				});
 
 			};
-			
-			
-			
-			$scope.savePlace =function(result) {
+
+			$scope.savePlace = function(result) {
 				$scope.currentlocation = {
 					lat : result.geometry.location.lat,
 					lng : result.geometry.location.lng
 				};
-				
-				$scope.map.markers[0].setPosition($scope.currentlocation);
-				console.log($scope.map);
 
+				$scope.map.markers[0].setPosition($scope.currentlocation);
 				$scope.address.place_id = result.place_id;
 
 			}

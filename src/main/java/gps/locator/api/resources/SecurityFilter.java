@@ -39,10 +39,11 @@ public class SecurityFilter implements ContainerRequestFilter {
 		boolean notAllow = true;
 		if (url.contains("credentials")) {
 			notAllow = false;
-			}if (url.contains("place/nearbysearchfree")) {
-				notAllow = false;
-				}
-		
+		} else if (url.contains("place/nearbysearchfree")) {
+			notAllow = false;
+		} else if (url.contains("services")) {
+			notAllow = false;
+		}
 
 		if (notAllow) {
 			List<String> authHeader = requestContext.getHeaders().get(AUTHORIZATION_HEADER_KEY);
@@ -54,9 +55,9 @@ public class SecurityFilter implements ContainerRequestFilter {
 				StringTokenizer tokenizer = new StringTokenizer(decodeString, ":");
 				String username = tokenizer.nextToken();
 				String password = tokenizer.nextToken();
-				
-				System.out.println("entroooo a validar esta informacion"+ "username"+  username+  "password"+  password);
 
+				System.out
+						.println("entroooo a validar esta informacion" + "username" + username + "password" + password);
 
 				final User user = Queries.getUser(username, password);
 
