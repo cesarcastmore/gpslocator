@@ -16,6 +16,7 @@ import javax.ws.rs.core.UriInfo;
 import gps.locator.database.DAL;
 import gps.locator.database.Queries;
 import gps.locator.database.query.CategoryMenuQuery;
+import gps.locator.model.Address;
 import gps.locator.model.CategoryMenu;
 import gps.locator.model.ErrorMessage;
 import gps.locator.model.Permission;
@@ -60,6 +61,9 @@ public class CredentialResource {
 			}
 			
 		} else if(user.getType().equals("business")){
+			
+		
+			
 		List<CategoryMenu> caregories = CategoryMenuQuery.getCategoryMenyByType("business");
 			
 			
@@ -74,6 +78,17 @@ public class CredentialResource {
 			}
 			
 		}
+		
+		
+		for(Address adr: user.getAddresses()){
+			adr.setUser(user);
+			dal.save(adr);
+			
+		}
+		
+		
+		
+		
 
 		
 		dal.save(user);

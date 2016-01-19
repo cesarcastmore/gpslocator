@@ -6,14 +6,10 @@
 </ul>
 <div ng-switch on="selection">
 	<!-- First Step -->
-	<div ng-switch-when="Step 1: Personal Information">
-		<div ng-include="'view/business_register_infopersonal_view.html'"></div>
-	</div>
-	<!-- Second Step -->
-	<div ng-switch-when="Step 2: Registration on Google Maps">
+		<div ng-switch-when="Step 1: Registration on Google Maps">
 		<div class="row">
 			<div class="col-md-6">
-				<ng-map center="{{currentlocation}}" map-type-id="MapTypeId.ROADMAP">
+				<ng-map center="current" map-type-id="MapTypeId.ROADMAP">
 				<marker position="current" animation="Animation.BOUNCE"
 					centered="true" draggable="true"></marker> </ng-map>
 			</div>
@@ -23,11 +19,17 @@
 		</div>
 
 	</div>
+	
+	<!-- Second Step -->
+	<div ng-switch-when="Step 2: Personal Information">
+		<div ng-include="'view/business_register_infopersonal_view.html'"></div>
+	</div>
 		<!-- Third Step -->
 	<div ng-switch-when="Step 3: Address Information">
 		<div ng-include="'view/business_register_address_view.html'"></div>
 	</div>
 		<div ng-switch-when="Step 4: Register">
+		<button type="button" class="btn btn-primary btn-lg" ng-click="register()">Large</button>
 	</div>
 </div>
 

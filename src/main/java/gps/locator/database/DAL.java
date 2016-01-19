@@ -153,5 +153,10 @@ public class DAL {
 		session.getTransaction().commit();
 		session.close();
 	}
+	
+	
+	public void flush() {
+		session.flush();
+	}
 
 }

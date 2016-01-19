@@ -2,15 +2,16 @@ controllers.controller('BusinessRegisterController', [
 		'$scope',
 		'NgMap',
 		'PlaceRESTful',
-		'ServiceRESTful',
-		function($scope, NgMap, PlaceRESTful, ServiceRESTful) {
+		'ServiceRESTful', 'CredentialService',
+		function($scope, NgMap, PlaceRESTful, ServiceRESTful, CredentialService) {
 
-			$scope.steps = [ 'Step 1: Personal Information',
-					'Step 2: Registration on Google Maps',
+			$scope.steps = [ 'Step 1: Registration on Google Maps',
+					'Step 2: Personal Information',
 					'Step 3: Address Information', 'Step 4: Register' ];
 			$scope.selection = $scope.steps[0];
 			$scope.business = {};
-			$scope.search = {};
+			$scope.address = {};
+			$scope.search= {};
 
 			$scope.data = {
 				singleSelect : null,
@@ -43,6 +44,7 @@ controllers.controller('BusinessRegisterController', [
 			};
 
 			NgMap.getMap().then(function(map) {
+				console.log("ENTRO AQUI A REVISAR EL MAP");
 				$scope.map = map;
 
 			});
@@ -67,14 +69,37 @@ controllers.controller('BusinessRegisterController', [
 
 			};
 
-			$scope.savePlace = function(result) {
+			$scope.savePlace = function(result) {;
 				$scope.currentlocation = {
 					lat : result.geometry.location.lat,
 					lng : result.geometry.location.lng
 				};
 
 				$scope.map.markers[0].setPosition($scope.currentlocation);
-				$scope.address.place_id = result.place_id;
+				$scope.map.setCenter($scope.currentlocation);
+				$scope.place_id= result.place_id;
+
+			}
+
+			$scope.register = function() {
+				
+				$scope.address.place_id=$scope.place_id;
+				
+				$scope.business.addresses=[];
+				$scope.business.addresses.push($scope.address);
+				
+				$scope.business.type='business';
+				
+				var respuesta = CredentialService.Create($scope.business);
+				
+				respuesta.then(function successCallback(response) {
+					console.log("EXITOSAMENTE CREO EL USUARIO");
+				}, function errorCallback(response) {
+
+				});
+				
+				
+				console.log($scope.business);
 
 			}
 
