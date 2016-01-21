@@ -86,6 +86,10 @@ controllers.controller('BusinessRegisterController', [
 				$scope.address.place_id=$scope.place_id;
 				
 				$scope.business.addresses=[];
+				$scope.address.latitude = $scope.currentlocation.lat;
+				$scope.address.longitude = $scope.currentlocation.lng;
+
+				
 				$scope.business.addresses.push($scope.address);
 				
 				$scope.business.type='business';

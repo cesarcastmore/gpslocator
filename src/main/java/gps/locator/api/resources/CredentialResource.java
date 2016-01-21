@@ -24,100 +24,89 @@ import gps.locator.model.User;
 
 @Path("credentials")
 public class CredentialResource {
-	
+
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public User setClient(User user, @Context UriInfo urlInfo) {
-		
-		if(user.getType() == null){
-			throw new WebApplicationException(
-					new ErrorMessage("El tipo de usuario incorrecto no debe  estar en blanco", 400, "El usuario debe de ser client o business").toResponse());
+
+		if (user.getType() == null) {
+			throw new WebApplicationException(new ErrorMessage("El tipo de usuario incorrecto no debe  estar en blanco",
+					400, "El usuario debe de ser client o business").toResponse());
 		}
-		
-		if(!(user.getType().equals("client") || user.getType().equals("business"))){
+
+		if (!(user.getType().equals("client") || user.getType().equals("business"))) {
 			throw new WebApplicationException(
-					new ErrorMessage("El tipo de usuario incorrecto", 400, "El usuario debe de ser client o business").toResponse());
+					new ErrorMessage("El tipo de usuario incorrecto", 400, "El usuario debe de ser client o business")
+							.toResponse());
 		}
-		
-		DAL dal= new DAL();
+
+		DAL dal = new DAL();
 		dal.openSession();
-		
-		String url= urlInfo.getBaseUri().toString().replaceAll("api/", "images/user.jpg");
+
+		String url = urlInfo.getBaseUri().toString().replaceAll("api/", "images/user.jpg");
 		user.setProfileimage(url);
 		user.setProfileimage(url);
-		
-		if(user.getType().equals("client")){
+
+		if (user.getType().equals("client")) {
 			List<CategoryMenu> caregories = CategoryMenuQuery.getCategoryMenyByType("client");
-			
-			
-			for(CategoryMenu cat:caregories){
-				Permission per= new Permission();
+
+			for (CategoryMenu cat : caregories) {
+				Permission per = new Permission();
 				per.setCategoryMenu(cat);
 				per.setName("client_" + user.getUsername());
 				per.setUser(user);
 				dal.save(per);
-				
+
 			}
-			
-		} else if(user.getType().equals("business")){
-			
-		
-			
-		List<CategoryMenu> caregories = CategoryMenuQuery.getCategoryMenyByType("business");
-			
-			
-			for(CategoryMenu cat:caregories){
-				Permission per= new Permission();
+
+		} else if (user.getType().equals("business")) {
+
+			List<CategoryMenu> caregories = CategoryMenuQuery.getCategoryMenyByType("business");
+
+			for (CategoryMenu cat : caregories) {
+				Permission per = new Permission();
 				per.setCategoryMenu(cat);
 				per.setName("business_" + user.getUsername());
 				per.setUser(user);
 				dal.save(per);
 
-				
 			}
-			
-		}
-		
-		
-		for(Address adr: user.getAddresses()){
-			adr.setUser(user);
-			dal.save(adr);
-			
-		}
-		
-		
-		
-		
 
-		
+		}
+
+		if (user.getAddresses() != null) {
+			for (Address adr : user.getAddresses()) {
+
+				System.out.println("Entro a revisar el address");
+				adr.setUser(user);
+				dal.save(adr);
+			}
+		}
+
 		dal.save(user);
 		dal.closeSession();
 
 		return user;
 	}
-	
-	
+
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public User authetication(@QueryParam("username") String username, @QueryParam("password") String password  ) {
-		
+	public User authetication(@QueryParam("username") String username, @QueryParam("password") String password) {
+
 		User user = Queries.getUser(username, password);
-		
-		if(user == null){
-			throw new WebApplicationException(
-					new ErrorMessage("El usuario o el password es incorrecto", 400, "El usuario debe de ser client o business").toResponse());
+
+		if (user == null) {
+			throw new WebApplicationException(new ErrorMessage("El usuario o el password es incorrecto", 400,
+					"El usuario debe de ser client o business").toResponse());
 		}
-		
+
 		user.setEmail(null);
 		user.setUsername(null);
 		user.setPassword(null);
-		
-		return user;
-		
-	}
-		
-	
 
+		return user;
+
+	}
 
 }

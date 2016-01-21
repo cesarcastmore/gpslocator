@@ -25,6 +25,9 @@ app.config(function($routeProvider, uiGmapGoogleMapApiProvider) {
 	}).when('/client/register', {
 		controller : 'ClientRegisterController',
 		templateUrl : 'view/client_register_view.html',
+	}).when('/places', {
+		controller : 'PlacesController',
+		templateUrl : 'view/places_view.html',
 	}).when('/business/register', {
 		controller : 'BusinessRegisterController',
 		templateUrl : 'view/business_register_view.html',

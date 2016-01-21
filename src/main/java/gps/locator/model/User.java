@@ -143,7 +143,6 @@ public class User implements Principal {
 		this.permissions = permissions;
 	}
 
-	@XmlTransient
 	public List<Address> getAddresses() {
 		return addresses;
 	}
