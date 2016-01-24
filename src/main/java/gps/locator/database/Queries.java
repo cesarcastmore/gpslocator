@@ -4,17 +4,9 @@ import java.util.List;
 
 
 
-import org.hibernate.criterion.Restrictions;
 
-import gps.locator.calc.Coordinate;
-import gps.locator.calc.DegreeCoordinate;
-import gps.locator.calc.EarthCalc;
-import gps.locator.calc.Point;
-import gps.locator.model.Address;
-import gps.locator.model.Service;
 import gps.locator.model.CategoryMenu;
 import gps.locator.model.User;
-import gps.locator.model.Request;
 
 public class Queries {
 

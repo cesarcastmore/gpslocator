@@ -21,13 +21,11 @@ import gps.locator.database.DAL;
 import gps.locator.database.Queries;
 import gps.locator.database.query.AddressQuery;
 import gps.locator.database.query.RequestQuery;
-import gps.locator.database.query.ServiceQuery;
 import gps.locator.database.query.TreeQuery;
 import gps.locator.database.query.UserQuery;
 import gps.locator.model.Address;
 import gps.locator.model.ErrorMessage;
 import gps.locator.model.Request;
-import gps.locator.model.Service;
 import gps.locator.model.Tree;
 import gps.locator.model.User;
 
@@ -44,17 +42,18 @@ public class RequestResource {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Request> getRequests(@QueryParam("service") String serviceName, @QueryParam("findBy") String findBy) {
+	public List<Request> getRequests(@QueryParam("service") String categoryname, @QueryParam("findBy") String findBy) {
 
 		System.out.println("ENTRO AQUI");
 
 		User user = (User) securityContext.getUserPrincipal();
 		if (user.getType().equals("client")) {
-			if (serviceName != null) {
-				if (serviceName.equals("all")) {
+			if (categoryname != null) {
+				if (categoryname.equals("all")) {
+					System.out.println("HELLO I am at Home");
 					return RequestQuery.getRequestsByClient(user);
 				} else {
-					return RequestQuery.getRequestsByClientAndService(user, serviceName);
+					return RequestQuery.getRequestsByClientAndService(user, categoryname);
 				}
 			} else if (findBy != null) {
 				return RequestQuery.findRequestsByClient(user, findBy);
@@ -63,20 +62,13 @@ public class RequestResource {
 			}
 
 		} else {
-			if (serviceName != null) {
-				if (serviceName.equals("all")) {
-					List<Service> services = ServiceQuery.getServices(user);
-					List<Request> requests = RequestQuery.getRequestsByBusiness(user, services);
-					return requests;
-				} else {
-					Service service = ServiceQuery.getServices(serviceName);
-					List<Request> requests = RequestQuery.getRequestsByBusiness(user, service);
-					return requests;
-				}
-			} else if (findBy != null) {
+			if (findBy != null) {
 				return RequestQuery.findRequestsByBusiness(user, findBy);
+			} else if (categoryname != null) {
+				return RequestQuery.getRequestsByBusiness(user);
 			} else {
 				return new ArrayList<Request>();
+
 			}
 		}
 

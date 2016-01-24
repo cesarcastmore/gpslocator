@@ -1,4 +1,19 @@
 
+<form>
+	<div class="form-group">
+		<label for="exampleInputEmail1">Name</label> <input type="text"
+			class="form-control" ng-model="$parent.business.name"
+			placeholder="Name" value="{{$parent.business.name}}" >
+	</div>
+	<select class="form-control" rows="3" ng-model="$parent.data.type">
+		<option ng-repeat="category in $parent.categories" value="{{category}}">{{category}}</option>
+	</select>
+</form>
+</br>
+</br>
+</br>
+
+
 <form class="form-inline" ng-submit="$parent.nearbysearch()">
 	<div class="form-group">
 		<input type="number" class="form-control"
@@ -18,16 +33,19 @@
 	<thead>
 		<tr>
 			<th>Name</th>
-			<th>action</th>
+			<th>Type</th>
+			<th>Action</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr ng-repeat="b in $parent.lista.results">
 			<td>{{b.name}}</td>
+			<td>{{b.types[0]}} </label></td>
 			<td><label class="radio-inline"> <input
 					ng-click="$parent.savePlace(b)" type="radio"
 					name="inlineRadioOptions" id="inlineRadio1" value="option1">
 			</label></td>
+
 		</tr>
 	</tbody>
 </table>

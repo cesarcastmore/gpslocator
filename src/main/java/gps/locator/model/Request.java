@@ -20,7 +20,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @XmlRootElement
 @NamedQueries({
-@NamedQuery(name = "Request.byServiceName", query = "from Request where service.name = ?"),
+@NamedQuery(name = "Request.byCategoryName", query = "from Request where categoryname = ?"),
 @NamedQuery(name = "Request.all", query = "from Request"),
 
 
@@ -39,10 +39,11 @@ public class Request {
 	private Date toDate = new Date();
 	private Double latitude;
 	private Double longitude;
+	
+	private String categoryname;
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST })
-	@JoinColumn(name = "serviceId")
-	private Service service;
+	
+
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "userId")
@@ -94,13 +95,7 @@ public class Request {
 		this.distance = distance;
 	}
 
-	public Service getService() {
-		return service;
-	}
-
-	public void setService(Service service) {
-		this.service = service;
-	}
+	
 
 	public Date getCreated() {
 		return created;
@@ -135,6 +130,15 @@ public class Request {
 	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
 	}
+
+	public String getCategoryname() {
+		return categoryname;
+	}
+
+	public void setCategoryname(String categoryname) {
+		this.categoryname = categoryname;
+	}
+	
 	
 
 }

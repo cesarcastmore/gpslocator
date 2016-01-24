@@ -2,19 +2,16 @@ package gps.locator.database;
 
 import java.io.File;
 
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import gps.locator.model.CategoryMenu;
-import gps.locator.model.Menu;
+
 /*
  * 
  * 
  *  https://developer.jboss.org/wiki/SessionsAndTransactions
  * 
  */
-import gps.locator.model.Service;
 
 public class HibernateUtil {
 

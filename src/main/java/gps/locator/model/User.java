@@ -51,8 +51,6 @@ public class User implements Principal {
 	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
 	private List<Address> addresses;
 	
-	@OneToMany(mappedBy = "user", fetch= FetchType.EAGER)
-	private List<UserService> userServices;
 
 	public User() {
 
@@ -160,14 +158,6 @@ public class User implements Principal {
 		this.addresses = addresses;
 	}
 
-	@XmlTransient
-	public List<UserService> getUserServices() {
-		return userServices;
-	}
-
-	public void setUserServices(List<UserService> userServices) {
-		this.userServices = userServices;
-	}
 
 	public String getProfileimage() {
 		return profileimage;

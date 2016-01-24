@@ -32,6 +32,7 @@ public class Address {
 	private Long radius = 500l;
 	private String place_id;
 	private Integer zoom;
+	private String categoryname;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "userId")
@@ -161,6 +162,15 @@ public class Address {
 	public void setZoom(Integer zoom) {
 		this.zoom = zoom;
 	}
+
+	public String getCategoryname() {
+		return categoryname;
+	}
+
+	public void setCategoryname(String categoryname) {
+		this.categoryname = categoryname;
+	}
+	
 	
 	
 

@@ -34,9 +34,6 @@ app.config(function($routeProvider, uiGmapGoogleMapApiProvider) {
 	}).when('/request/locate', {
 		controller : 'RequestLocateController',
 		templateUrl : 'view/request_locate_view.html',
-	}).when('/services', {
-		controller : 'ServicesController',
-		templateUrl : 'view/services_view.html',
 	}).when('/business/find', {
 		controller : 'BusinessFindController',
 		templateUrl : 'view/business_find_view.html',

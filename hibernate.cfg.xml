@@ -26,8 +26,6 @@
 		<property name="hbm2ddl.import_files">/home/ccastillo/workspace/gps-locator-api/initial_data.sql</property>
 
 		<mapping class="gps.locator.model.User" />
-		<mapping class="gps.locator.model.Service" />
-		<mapping class="gps.locator.model.UserService" />
 		<mapping class="gps.locator.model.Permission" />
 		<mapping class="gps.locator.model.Request" />
 		<mapping class="gps.locator.model.Menu" />

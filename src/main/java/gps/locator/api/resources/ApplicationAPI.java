@@ -25,10 +25,8 @@ public class ApplicationAPI extends Application {
 	        resources.add(CategoryMenuResource.class);
 	        resources.add(CredentialResource.class);
 	        resources.add(RequestResource.class);
-	        resources.add(ServiceResource.class);
 	        resources.add(SecurityFilter.class);
 	        resources.add(UserResource.class);
-	        resources.add(UserServiceResource.class);
 	        resources.add(PlaceResource.class);
 
 

@@ -1,6 +1,10 @@
-<div class="row" ng-init="getCurrentLocation()">
-	<div class="col-md-6" ng-include="'view/address_map_view.html'">
+<div class="row">
+	<div class="col-md-6"  ng-if="type == 'client'">
+		<ng-map zoom="15" center="current"
+			map-type-id="MapTypeId.ROADMAP"> <marker position="current"
+			animation="Animation.BOUNCE" centered="true" draggable="true"></marker>
+		</ng-map>
 	</div>
-	<div class="col-md-6"
-		ng-init="getAddress()" ng-include="'view/address_edit_address_view.html'"></div>
+	<div class="col-md-6"  ng-init="initBusiness()"
+		ng-include="'view/address_edit_address_view.html'"></div>
 </div>
