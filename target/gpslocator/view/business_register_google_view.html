@@ -1,0 +1,106 @@
+
+<script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">I'm a modal!</h3>
+        </div>
+        <div class="modal-body">
+            <ng-map  map-type-id="MapTypeId.ROADMAP">
+				<marker  animation="Animation.BOUNCE"
+					centered="true" draggable="true"></marker> </ng-map>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
+
+<div class="row">
+
+	<div class="col-md-3 col-md-offset-1">
+		<form>
+			<div class="form-group">
+				</br> <input type="text" class="form-control"
+					ng-model="$parent.place.name" value="{{$parent.business.name}}"
+					placeholder="Name">
+			</div>
+			<select class="form-control" rows="3" ng-model="$parent.place.type"
+				placeholder="Type">
+				<option ng-repeat="category in $parent.categories"
+					value="{{category}}">{{category}}</option>
+			</select> </br>
+			<div class="input-group">
+				<input type="text" class="form-control" placeholder="Location"
+					value="{{$parent.LatLng.lat}} , {{$parent.LatLng.lng}}"> <span
+					class="input-group-btn">
+					<button class="btn btn-default" type="button"
+						ng-click="$parent.open('lg')">Go!</button>
+				</span>
+			</div>
+			</br>
+			<div class="form-group">
+				<input type="text" placeholder="Address" class="form-control"
+					ng-model="$parent.place.address" value="{{$parent.place.address}}">
+			</div>
+			<div class="form-group">
+				<input type="text" placeholder="Website" class="form-control"
+					ng-model="$parent.place.website" value="{{$parent.place.website}}">
+			</div>
+			<div class="form-group">
+				<input type="text" placeholder="Phone" class="form-control"
+					ng-model="$parent.place.phone_number" value="{{$parent.place.phone_number}}">
+			</div>
+			<div class="form-group">
+				<input type="text" placeholder="place_id" class="form-control"
+					ng-model="$parent.place.place_id" value="{{$parent.place.place_id}}">
+			</div>
+			<button type="submit" class="btn btn-primary" ng-click="$parent.registerPlace()">Register</button>
+			
+		</form>
+	</div>
+	<div class="col-md-7">
+	</br> 
+		<form class="form-inline" ng-submit="$parent.nearbysearch()">
+			<div class="input-group">
+				<input type="text" class="form-control"
+					value="{{$parent.LatLng.lat}} , {{$parent.LatLng.lng}}"
+					placeholder="Search for..."> <span class="input-group-btn">
+					<button class="btn btn-default" type="button">Go!</button>
+				</span>
+			</div>
+			<div class="form-group">
+				<input type="number" class="form-control"
+					ng-model="$parent.search.radius" placeholder="radius">
+			</div>
+			<div class="form-group">
+				<input type="text" class="form-control"
+					ng-model="$parent.search.name" placeholder="name">
+			</div>
+			<div class="form-group">
+				<input class="form-control" ng-model="$parent.search.type"
+					placeholder="category">
+			</div>
+			<button type="submit" class="btn btn-default">Search</button>
+		</form>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Type</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="b in $parent.lista.results">
+					<td>{{b.name}}</td>
+					<td>{{b.types[0]}} </label></td>
+					<td><label class="radio-inline"> <input
+							ng-click="$parent.savePlace(b)" type="radio"
+							name="inlineRadioOptions" id="inlineRadio1" value="option1">
+					</label></td>
+
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+</div>

@@ -1,0 +1,41 @@
+<div class="row">
+	<div class="col-md-6">
+		<ng-map center="current" map-type-id="MapTypeId.ROADMAP"> <marker
+			position="current" animation="Animation.BOUNCE" centered="true"
+			draggable="true"></marker> </ng-map>
+	</div>
+	<div class="col-md-6">
+		<form class="form-inline" ng-submit="$parent.nearbysearch()">
+			<div class="form-group">
+				<input type="number" class="form-control"
+					ng-model="$parent.search.radius" placeholder="radius">
+			</div>
+			<div class="form-group">
+				<input type="text" class="form-control"
+					ng-model="$parent.search.name" placeholder="name">
+			</div>
+			<div class="form-group">
+				<input class="form-control" ng-model="$parent.search.types"
+					placeholder="category">
+			</div>
+			<button type="submit" class="btn btn-default">Search</button>
+		</form>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="b in $parent.lista.results">
+					<td>{{b.name}}</td>
+					<td><label class="radio-inline"> <input
+							ng-click="$parent.savePlace(b)" type="radio"
+							name="inlineRadioOptions" id="inlineRadio1" value="option1">
+					</label></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

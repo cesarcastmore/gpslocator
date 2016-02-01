@@ -29,7 +29,7 @@
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>4.3.11.Final</version>
 		</dependency>
-		
+
 <dependency>
 	<groupId>org.hibernate</groupId>
 	<artifactId>hibernate-jpamodelgen</artifactId>
@@ -100,9 +100,9 @@
 
 
   </dependencies>
-  
+
   <build>
-		<finalName>advanced-jaxrs-03</finalName>
+      <finalName>gpslocator</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -116,7 +116,7 @@
 			</plugin>
 		</plugins>
 	</build>
-  
+
   <properties>
 		<jersey.version>2.16</jersey.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

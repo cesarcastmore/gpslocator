@@ -1,0 +1,70 @@
+<div class="row" ng-init="getRequests('all')">
+	<div class="col-md-8">
+		<div class="well">
+			<h4>Leave a Request:</h4>
+			<form role="form">
+				<div class="form-group">
+					<textarea ng-model="request.commit" value="request.commit"
+						class="form-control" rows="3"></textarea>
+					</br>
+					<h5>Select Service</h5>
+
+					<select class="form-control" rows="3" ng-model="data.singleSelect">
+						<option ng-repeat="category in categories"
+							value="{{category}}">{{category}}</option>
+					</select>
+				</div>
+
+				<button type="submit" ng-click="create()" class="btn btn-primary">Submit</button>
+			</form>
+		</div>
+		<hr>
+
+		<!-- Comment -->
+		<div class="media"
+			ng-repeat="request in requests  | orderBy:'-created'"
+			ng-show="request != null">
+			<textarea ng-model="request.commit" class="form-control" rows="3"
+				ng-readonly="!request.edit">{{request.commit}}</textarea>
+			</br> </br>
+			<button type="submit" ng-click="request.edit=true"
+				ng-hide="request.edit" class="btn btn-primary">Edit</button>
+			<button type="submit" ng-click="update(request)"
+				ng-show="request.edit" class="btn btn-primary">Save</button>
+			<button type="submit" ng-click="remove(request, $index)"
+				class="btn btn-primary">Delete</button>
+				<button type="submit" ng-click="showResponses(request)"
+				class="btn btn-primary">Show Responses</button>
+		</div>
+	</div>
+	<div class="col-md-4"">
+		<!-- Blog Search Well -->
+		<div class="well">
+			<h4>Search</h4>
+			<div class="input-group">
+				<input type="text" class="form-control" ng-model="findby"> <span
+					class="input-group-btn">
+					<button class="btn btn-default" type="button" ng-click="find()">
+						<span class="glyphicon glyphicon-search"></span>
+					</button>
+				</span>
+			</div>
+		</div>
+		<!-- Blog Categories Well -->
+		<div class="well">
+			<h4>Type of Request</h4>
+			<div class="row">
+				<div class="col-lg-6">
+					<ul class="list-unstyled">
+					<li ><a
+							 href ng-click="getRequests('all')" >all</a></li>
+						<li ng-repeat="category in categories"><a
+							 href ng-click="getRequests(category)" >{{category}}</a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- /.row -->
+		</div>
+	</div>
+
+</div>

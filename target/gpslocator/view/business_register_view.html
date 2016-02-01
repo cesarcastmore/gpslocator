@@ -1,0 +1,27 @@
+<!-- http://plnkr.co/edit/SDOcGS?p=preview -->
+<!-- http://jsfiddle.net/alexsuch/RLQhh/ -->
+<ul class="nav nav-tabs">
+	<li ng-repeat="step in steps"
+		ng-class="{active: $index==getCurrentStepIndex()}"><a
+		href="javascript:void(0)" ng-click="goToStep($index)">{{step}}</a></li>
+</ul>
+<div ng-switch on="selection">
+	<!-- First Step -->
+	<div ng-switch-when="Step 1: Registration on Google Maps">
+		<div ng-include="'view/business_register_google_view.html'"></div>
+	</div>
+
+	<!-- Second Step -->
+	<div ng-switch-when="Step 2: Personal Information">
+		<div ng-include="'view/business_register_infopersonal_view.html'"></div>
+	</div>
+	<!-- Third Step -->
+	<div ng-switch-when="Step 3: Address Information">
+		<div ng-include="'view/business_register_address_view.html'"></div>
+	</div>
+	<div ng-switch-when="Step 4: Register">
+		<button type="button" class="btn btn-primary btn-lg"
+			ng-click="register()">Large</button>
+	</div>
+</div>
+

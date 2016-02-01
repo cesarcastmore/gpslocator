@@ -1,6 +1,5 @@
 package gps.locator.database;
 
-import java.io.File;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -20,7 +19,8 @@ public class HibernateUtil {
 	static {
 		try {
 			// Create the SessionFactory from hibernate.cfg.xml
-			sessionFactory = new Configuration().configure(new File("/home/ccastillo/workspace/gps-locator-api/hibernate.cfg.xml")).buildSessionFactory();
+            sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
+
 		} catch (Throwable ex) {
 			// Make sure you log the exception, as it might be swallowed
 			System.err.println("Initial SessionFactory creation failed." + ex);

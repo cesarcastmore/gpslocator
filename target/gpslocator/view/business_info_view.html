@@ -1,0 +1,17 @@
+<!-- http://ngmap.github.io/ -->
+
+	<div class="col-md-12" ng-init="getBusiness()">
+		<ul class="nav nav-tabs">
+			<li role="presentation" ng-class="tab==1 ? 'active' : ''"><a
+				href ng-click="enableDirection()">Directions</a></li>
+			<li role="presentation" ng-class="tab==2 ? 'active' : ''""><a
+				href ng-click="enableAddress()">Address</a></li>
+			<li role="presentation" ng-class="tab==3 ? 'active' : ''""><a
+				href ng-click="tab=3">Messages</a></li>
+		</ul>
+		<br>
+		<div ng-show="tab == 1"  ng-include="'view/business_info_direction_view.html'"></div>
+		
+		<div ng-show="tab == 2" ng-include="'view/business_info_address_view.html'">
+		</div>
+	</div>

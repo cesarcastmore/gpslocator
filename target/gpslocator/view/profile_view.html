@@ -1,0 +1,70 @@
+<!-- http://jsfiddle.net/danialfarid/s8kc7wg0/219/ -->
+<!-- http://tutorials.jenkov.com/angularjs/watch-digest-apply.html -->
+<!-- https://github.com/danialfarid/ng-file-upload -->
+
+<div class="row" ng-init="getUser()">
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<h3 class="panel-title">{{user.username}}</h3>
+		</div>
+		<div class="panel-body">
+			<div class="row">
+
+				<div class="col-md-3 col-lg-3 " align="center" ngf-drop ngf-select
+					ng-model="file" class="drop-box" ngf-drag-over-class="'dragover'"
+					 ngf-allow-dir="true"
+					accept="image/*,application/pdf"
+					ngf-pattern="'image/*,application/pdf'">
+					<img alt="User Pic"
+						ng-src="{{user.profileimage}}"
+						class="img-circle img-responsive">
+				</div>
+
+				<div class=" col-md-9 col-lg-9 ">
+					<table class="table">
+						<tbody>
+							<tr ng-if="user.type=='business'">
+								<td>Name:</td>
+								<td><input name="" class="form-control" id=""
+									value="{{user.name}}" ng-model="user.name"></td>
+							</tr>
+							<tr>
+								<td>First Name</td>
+								<td><input name="" class="form-control" id=""
+									value="{{user.firstname}}" ng-model="user.firstname"></td>
+							</tr>
+							<tr>
+								<td>Last Name</td>
+								<td><input name="" class="form-control" id=""
+									value="{{user.lastname}}" ng-model="user.lastname"></td>
+							</tr>
+
+							<tr>
+							<tr>
+								<td>Username</td>
+								<td><input name="" class="form-control" id=""
+									value="{{user.username}}" ng-model="user.username"></td>
+								</td>
+							</tr>
+							<tr>
+								<td>Email</td>
+								<td><input type="email" name="" class="form-control" id=""
+									value="{{user.email}}" ng-model="user.email"></td>
+							</tr>
+							<tr>
+								<td>Password</td>
+								<td><input type="password" name="" class="form-control"
+									id="" value="{{user.password}}" ng-model="user.password"></td>
+							</tr>
+
+
+						</tbody>
+					</table>
+
+					<a href ng-click="updateUser()" class="btn btn-primary">Save</a>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
