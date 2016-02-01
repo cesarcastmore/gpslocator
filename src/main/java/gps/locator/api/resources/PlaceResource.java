@@ -6,6 +6,7 @@ package gps.locator.api.resources;
  * 
  */
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -16,6 +17,8 @@ import javax.ws.rs.core.SecurityContext;
 
 import gps.locator.api.google.ClientGoogle;
 import gps.locator.api.google.Location;
+import gps.locator.api.google.Place;
+import gps.locator.api.google.ResponsePlace;
 import gps.locator.api.google.ResponseSearch;
 import gps.locator.calc.Coordinate;
 import gps.locator.calc.DegreeCoordinate;
@@ -102,9 +105,35 @@ public class PlaceResource {
 		ResponseSearch search = client.nearBySearch(new Location(lat, lng), radius,
 				name, types);
 		return search;
+	
 
+
+	}
+	
+	
+	@POST
+	@Path("/addplace")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ResponsePlace addBusiness(Place place) {
+
+		System.out.println("ENTRO AQUI");
+		
+		place.setAccuracy(50);
+		place.setLanguage("es");
+		
+		System.out.println(place.getAddress());
+		System.out.println(place.getLocation().getLat());
+		System.out.println(place.getLocation().getLng());
+		System.out.println(place.getName());
+
+
+
+
+		ClientGoogle client = new ClientGoogle();
+		ResponsePlace response=client.add(place);
 		
 
 
+		return response;
 	}
 }

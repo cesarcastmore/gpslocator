@@ -13,6 +13,10 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriInfo;
 
+import gps.locator.api.google.ClientGoogle;
+import gps.locator.api.google.Location;
+import gps.locator.api.google.Place;
+import gps.locator.api.google.ResponsePlace;
 import gps.locator.database.DAL;
 import gps.locator.database.Queries;
 import gps.locator.database.query.CategoryMenuQuery;
@@ -80,6 +84,22 @@ public class CredentialResource {
 
 				System.out.println("Entro a revisar el address");
 				adr.setUser(user);
+				
+				if(adr.getPlace_id() == null){
+					Place place = new Place();
+					place.setPhone_number(adr.getPhone());
+					place.setName(user.getName());
+					String types[]= {adr.getCategoryname() };
+					place.setTypes(types);
+					place.setAddress(adr.getStreet() + " "+adr.getOutdoorNumber() +"," + adr.getNeighborhood() + " "+  adr.getCity()+ " "+ adr.getState());
+					place.setLocation(new Location(adr.getLatitude(), adr.getLongitude()));
+					place.setWebsite(user.getWebsite());
+					ClientGoogle client= new ClientGoogle();
+					ResponsePlace response = client.add(place);
+					adr.setPlace_id(response.getPlace_id());
+					
+				}
+				
 				dal.save(adr);
 			}
 		}

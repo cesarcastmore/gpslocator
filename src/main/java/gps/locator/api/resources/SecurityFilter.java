@@ -43,7 +43,9 @@ public class SecurityFilter implements ContainerRequestFilter {
 			notAllow = false;
 		} else if (url.contains("services")) {
 			notAllow = false;
-		}
+		} else if (url.contains("place/addplace")) {
+			notAllow = false;
+		} 
 
 		if (notAllow) {
 			List<String> authHeader = requestContext.getHeaders().get(AUTHORIZATION_HEADER_KEY);

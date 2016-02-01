@@ -1,6 +1,6 @@
 var app = angular.module('app', [ 'ngRoute', 'ngCookies', 'controllers',
-		'factories', 'directives', 'services', 'uiGmapgoogle-maps',
-		'angular-loading-bar', 'ngMap', 'ngFileUpload' ]);
+		'ui.bootstrap', 'factories', 'directives', 'services',
+		'uiGmapgoogle-maps', 'angular-loading-bar', 'ngMap', 'ngFileUpload' ]);
 
 app.config(function($routeProvider, uiGmapGoogleMapApiProvider) {
 

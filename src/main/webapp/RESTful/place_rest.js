@@ -16,7 +16,6 @@ controllers.factory('PlaceRESTful', [ '$http', function($http) {
 		var response = $http({
 			method : 'GET',
 			url : 'api/place/nearbysearchfree',
-			cache : true,
 			params : params
 		});
 		
@@ -28,6 +27,18 @@ controllers.factory('PlaceRESTful', [ '$http', function($http) {
 			method : 'GET',
 			url : 'api/place/'+placeid+'/business',
 			cache : true
+		});
+		
+		return response;
+	}
+	
+	
+	service.addPlace = function(place) {
+		var response = $http({
+			method : 'POST',
+			url : 'api/place/addplace',
+            data: place
+
 		});
 		
 		return response;
