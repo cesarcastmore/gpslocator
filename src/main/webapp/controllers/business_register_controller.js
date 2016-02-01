@@ -124,6 +124,7 @@ controllers
 								respuesta.then(function successCallback(
 										response) {
 									console.log(response.data);
+									$scope.place.place_id=response.data.place_id;
 								}, function errorCallback(response) {
 
 								});

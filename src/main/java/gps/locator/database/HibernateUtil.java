@@ -21,7 +21,7 @@ public class HibernateUtil {
 	public static SessionFactory getSessionFactory() {
 		if (sessionFactory == null) {
 			// loads configuration and mappings
-			Configuration configuration = new Configuration().configure(new File("/opt/gpslocator/hibernate.cfg.xml"));
+			Configuration configuration = new Configuration().configure(new File("/home/ccastillo/workspace/gps-locator-api/hibernate.cfg.xml"));
 			ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
 					.applySettings(configuration.getProperties()).build();
 
