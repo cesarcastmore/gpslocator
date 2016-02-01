@@ -123,7 +123,6 @@ controllers
 
 								respuesta.then(function successCallback(
 										response) {
-									console.log(response.data);
 									$scope.place.place_id=response.data.place_id;
 								}, function errorCallback(response) {
 
@@ -181,9 +180,6 @@ controllers
 								});
 
 								modalInstance.result.then(function(LatLng) {
-									console.log("resultado   111");
-									console.log(LatLng);
-
 									$scope.LatLng = LatLng;
 								}, function() {
 								});
